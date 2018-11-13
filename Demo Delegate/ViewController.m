@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
-
-@interface ViewController ()
+#import "ViewController2.h"
+@interface ViewController ()<didClickPushDelegate>
+- (IBAction)push:(id)sender;
 
 @end
 
@@ -18,6 +19,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
-
+- (IBAction)push:(id)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewController2 *vc = [sb instantiateViewControllerWithIdentifier:@"ViewController2"];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)traDulieu {
+    printf("test delegate");
+}
+- (void) traDulieu:(NSString *)text{
+    NSLog(@"%@", text);
+}
 
 @end
